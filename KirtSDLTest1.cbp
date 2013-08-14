@@ -5,6 +5,7 @@
 		<Option title="KirtSDLTest1" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
+		<Option virtualFolders="res\;" />
 		<Build>
 			<Script file="lib_finder.script" />
 			<Target title="Debug">
@@ -15,9 +16,12 @@
 				<Compiler>
 					<Add option="-g" />
 					<Add directory="../SDL2-2.0.0/i686-w64-mingw32/include" />
+					<Add directory="../SDL2_image-2.0.0/i686-w64-mingw32/include" />
+					<Add directory="../SDL2-2.0.0/i686-w64-mingw32/include/SDL2" />
 				</Compiler>
 				<Linker>
-					<Add option="-lmingw32 -lSDL2main -lSDL2" />
+					<Add option="-lmingw32 -lSDL2main -lSDL2 -lSDL2_image" />
+					<Add directory="../SDL2_image-2.0.0/i686-w64-mingw32/lib" />
 				</Linker>
 			</Target>
 			<Target title="Release">
@@ -28,10 +32,13 @@
 				<Compiler>
 					<Add option="-O2" />
 					<Add directory="../SDL2-2.0.0/i686-w64-mingw32/include" />
+					<Add directory="../SDL2_image-2.0.0/i686-w64-mingw32/include" />
+					<Add directory="../SDL2-2.0.0/i686-w64-mingw32/include/SDL2" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
-					<Add option="-lmingw32 -lSDL2main -lSDL2" />
+					<Add option="-lmingw32 -lSDL2main -lSDL2 -lSDL2_image" />
+					<Add directory="../SDL2_image-2.0.0/i686-w64-mingw32/lib" />
 				</Linker>
 			</Target>
 		</Build>
@@ -40,6 +47,15 @@
 			<Add option="-fexceptions" />
 		</Compiler>
 		<Unit filename="main.cpp" />
+		<Unit filename="res/background.bmp">
+			<Option virtualFolder="res/" />
+		</Unit>
+		<Unit filename="res/face.bmp">
+			<Option virtualFolder="res/" />
+		</Unit>
+		<Unit filename="res/helloworldies.bmp">
+			<Option virtualFolder="res/" />
+		</Unit>
 		<Extensions>
 			<DoxyBlocks>
 				<comment_style block="0" line="0" />

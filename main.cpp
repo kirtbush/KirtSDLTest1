@@ -1,7 +1,9 @@
 #include <iostream>
 #include <string>
+#include <stdexcept>
 
 #include "SDL2/SDL.h"
+#include "SDL2/SDL_image.h"
 
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
@@ -13,17 +15,13 @@ using namespace std;
 
 SDL_Texture * LoadImage( std::string file )
 {
-    SDL_Surface *loadedImage = NULL;
     SDL_Texture *texture = NULL;
 
-    loadedImage = SDL_LoadBMP( file.c_str() );
-    if(loadedImage != NULL )
+    texture = IMG_LoadTexture(renderer, file.c_str());
+    if( texture == NULL )
     {
-        texture = SDL_CreateTextureFromSurface( renderer, loadedImage );
-        SDL_FreeSurface( loadedImage );
+        throw std::runtime_error("Failed to load image: " + file + IMG_GetError());
     }
-    else
-        std::cout<<__FUNCTION__<< " Failed for file " << file << "with error: "<< SDL_GetError() << endl;
 
     return texture;
 }
@@ -71,18 +69,12 @@ int main( int argc, char* args[] )
         for(int idy=0; idy < 2; idy++ )
             ApplySurface( idx * bW, idy * bH, background, renderer );
 
-//    ApplySurface( 0, 0, background, renderer );
-//    ApplySurface( bW, 0, background, renderer );
-//    ApplySurface( 0, bH, background, renderer );
-//    ApplySurface( bW, bH, background, renderer );
-
     int fW, fH;
     SDL_QueryTexture(face, NULL, NULL, &fW, &fH);
     int x = SCREEN_WIDTH / 2 - fW / 2;
     int y = SCREEN_HEIGHT / 2 - fH / 2;
     ApplySurface(x, y, face, renderer);
 
-    //SDL_RenderCopy( renderer, tex, NULL, NULL );
     SDL_RenderPresent( renderer );
 
     SDL_Delay( 2000 );
