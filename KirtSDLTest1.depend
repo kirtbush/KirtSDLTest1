@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1376441936 source:d:\dev\kirtsdltest1\main.cpp
+1376446204 source:d:\dev\kirtsdltest1\main.cpp
 	<iostream>
 	<string>
 	"SDL2/SDL.h"
